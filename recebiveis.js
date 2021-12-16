@@ -113,9 +113,16 @@ function tabelaPorData() {
         let grupo = document.createElement("tr");
         let tituloDoGrupo = document.createElement("th");
         tituloDoGrupo.appendChild(document.createTextNode(separador));
-        tituloDoGrupo.setAttribute("colspan", 6);
+        tituloDoGrupo.setAttribute("colspan", 5);
+
+        let total = recebiveisAgrupados[separador].reduce((acc, cuv)=>acc+cuv.valorComJuros,0);
+        let celulaTotal = document.createElement("th");
+        celulaTotal.appendChild(document.createTextNode(total));
+
         grupo.appendChild(tituloDoGrupo);
+        grupo.appendChild(celulaTotal);
         tabela.appendChild(grupo);
+
         recebiveisAgrupados[separador].forEach((recebivel) => {
             tabela.appendChild(agregarLinhaComDados(recebivel));
         })
